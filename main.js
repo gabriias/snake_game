@@ -13,6 +13,21 @@ let context = canvas.getContext('2d');
  */
 let box = 32;
 
+/**
+ * a cobrinha basicamente é um array que vai guardar posições 
+ * (assim a gente consegue visualizar a posição do elemento)
+ */
+let snake = [];
+
+/**
+ * atribuindo uma posição inicial à cobrinha
+ * (aqui está 8 para que ela inicie no centro do canvas)
+ */
+snake[0] = {
+    x: 8 * box,
+    y: 8 * box
+}
+
 // atributos do canvas
 function criarBG() {
     // cor
@@ -21,4 +36,14 @@ function criarBG() {
     context.fillRect(0, 0, 16 * box, 16 * box);
 }
 
+function criarCobra(){
+    for (let posicao = 0; posicao < snake.length; posicao++) {
+        context.fillStyle = 'green';
+        context.fillRect(snake[posicao].x, snake[posicao].y, box, box);
+        
+    }
+    
+}
+
 criarBG();
+criarCobra();
