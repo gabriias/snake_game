@@ -28,6 +28,8 @@ snake[0] = {
     x: 8 * box,
     y: 8 * box
 }
+// posição em qua a cobrinha começará a se mover
+let direction = 'right'
 
 // atributos do canvas
 function criarBG() {
@@ -37,7 +39,7 @@ function criarBG() {
     context.fillRect(0, 0, 16 * box, 16 * box);
 }
 
-function criarCobra(){
+function criarCobra() {
     for (let posicao = 0; posicao < snake.length; posicao++) {
         context.fillStyle = 'green';
         context.fillRect(snake[posicao].x, snake[posicao].y, box, box);
@@ -45,6 +47,45 @@ function criarCobra(){
     }
     
 }
+/**
+ * assim que é iniciado, chama as demais funções
+ */
+function iniciarJogo() {
+    criarBG();
+    criarCobra();
 
-criarBG();
-criarCobra();
+    // criamos a posição da cobrinha que irá definir o ponto de partida para os movimentos
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    // movimento da cobrinha
+    if (direction == 'right') {
+        snakeX += box;
+    }
+    if (direction == 'left') {
+        snakeX -= box;
+    }
+    if (direction == 'up') {
+        snakeY -= box;
+    }
+    if (direction == 'down') {
+        snakeY += box;
+    }
+
+    // removendo a última posição da cobrinha 
+    snake.pop();
+    
+    // adicionando a nova cabeça da cobrinha
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    }
+    
+    /**
+     * diciono a nova cabeça da cobrinha no início do array
+     * (o unshift sempre adiciona no início) 
+     **/
+    snake.unshift(newHead);
+}
+// a cada 100ms, o canvas renova
+let jogo = setInterval(iniciarJogo, 100);
