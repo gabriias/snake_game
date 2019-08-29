@@ -14,7 +14,8 @@ let context = canvas.getContext('2d');
 let box = 32;
 
 /**
- * a cobrinha basicamente é um array que vai guardar posições 
+ * a cobrinha basicamente é um array de coordenadas que vai guardar posições 
+ * (a gente adiciona um elemento e remove o último)
  * (assim a gente consegue visualizar a posição do elemento)
  */
 let snake = [];
