@@ -47,6 +47,38 @@ function criarCobra() {
     }
     
 }
+
+/**
+ * evento para movimentar a cobrinha
+ */
+
+//quando a gente aperta uma tecla, o 'addEventListener' chama o 'update' e passa como evento a tecla pressionada
+document.addEventListener('keydown', update);
+
+/**
+ * quando chega aqui a gente já tem a tecla pressionada (graças ao 'addEventListener') 
+ * comparamos o código da tecla para definir em qual lado a cobrinha vai
+ * (link com a lista dos keyCodes: https://odesenvolvedor.com.br/tabela-de-key-codes-para-javascript_1464.html) 
+ */
+function update (event) {
+    /**
+     * tem essa validação da direção atual da cobrinha para que ela não possa ir na direção contrária da posição 
+     */
+    if (event.keyCode == 37 && direction != 'right'){
+        direction = 'left';
+    }
+    if (event.keyCode == 38 && direction != 'down') {
+        direction = 'up'
+    }
+    if (event.keyCode == 39 && direction != 'left') {
+        direction = 'right'
+    }
+    if (event.keyCode == 40 && direction != 'up') {
+        direction = 'down'
+    }
+
+}
+
 /**
  * assim que é iniciado, chama as demais funções
  */
