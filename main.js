@@ -27,9 +27,20 @@ let snake = [];
 snake[0] = {
     x: 8 * box,
     y: 8 * box
-}
+};
+
 // posição em qua a cobrinha começará a se mover
-let direction = 'right'
+let direction = 'right';
+
+/**
+ * posição da comida da cobrinha
+ * essa posição é gerada aleatoriamente porém, respeitando os limites do canvas
+ * (por isso *box no fim)
+ */
+let comida = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+};
 
 // atributos do canvas
 function criarBG() {
@@ -42,10 +53,16 @@ function criarBG() {
 function criarCobra() {
     for (let posicao = 0; posicao < snake.length; posicao++) {
         context.fillStyle = 'green';
-        context.fillRect(snake[posicao].x, snake[posicao].y, box, box);
-        
-    }
-    
+        context.fillRect(snake[posicao].x, snake[posicao].y, box, box);   
+    }  
+}
+
+/**
+ * função que gera as comidas
+ */
+function criarComida() {
+    context.fillStyle = 'red';
+    context.fillRect(comida.x, comida.y, box, box);
 }
 
 /**
@@ -103,6 +120,7 @@ function iniciarJogo() {
 
     criarBG();
     criarCobra();
+    criarComida();
 
     // criamos a posição da cobrinha que irá definir o ponto de partida para os movimentos
     let snakeX = snake[0].x;
@@ -132,7 +150,7 @@ function iniciarJogo() {
     }
     
     /**
-     * diciono a nova cabeça da cobrinha no início do array
+     * adiciono a nova cabeça da cobrinha no início do array
      * (o unshift sempre adiciona no início) 
      **/
     snake.unshift(newHead);
