@@ -118,6 +118,17 @@ function iniciarJogo() {
         snake[0].y = 16 * box;
     } 
 
+    /**
+     * valido se a cabeça da cobrinha em algum momento se choca com o corpo, se sim, 
+     * encerra o jogo e exibe o alert
+     */
+    for (i = 1; i < snake.length; i++) {
+        if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+            clearInterval(jogo);
+            alert("game over");
+        }
+    }
+
     criarBG();
     criarCobra();
     criarComida();
@@ -140,6 +151,10 @@ function iniciarJogo() {
         snakeY += box;
     }
 
+    /**
+     * gero a comida em lugares aleatórios assim que a cobrinha cruzar com ela e
+     * a cada vez, incremento o tamanho da cobrinha
+     */
     if (snakeX != comida.x || snakeY != comida.y) {
         // removendo a última posição da cobrinha 
         snake.pop();
