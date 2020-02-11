@@ -140,8 +140,14 @@ function iniciarJogo() {
         snakeY += box;
     }
 
-    // removendo a última posição da cobrinha 
-    snake.pop();
+    if (snakeX != comida.x || snakeY != comida.y) {
+        // removendo a última posição da cobrinha 
+        snake.pop();
+    } else {
+        comida.x = Math.floor(Math.random() * 15 + 1) * box;
+        comida.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
+
     
     // adicionando a nova cabeça da cobrinha
     let newHead = {
